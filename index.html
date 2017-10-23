@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<!-- build:css lib/vendor.css -->
+        <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="node_modules/reveal.js/css/theme/moon.css">
+        <link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">
+		<!-- endbuild -->
+        <style>
+        .mathblock {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+            padding: 20px !important;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<section>
+<h2>Comment rendre un ordinateur intelligent ?</h2>
+<h4>(Introduction au deeplearning)</h4>
+<p>Ludovic L'HOURS <a href="http://github.com/madbrain">github.com/madbrain</a></p>
+</section>
+
+<section>
+<h3>Exemple d'applications (1)</h3>
+<p>Recommandation de produits dans le E-commerce <br>(ie. Amazon)</p>
+<p><img src="images/amazon-recomandations.png"></p>
+(<a href="https://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/2/#3bc6026647e8)</li>
+<li>https://blog.pinterest.com/en/our-crazy-fun-new-visual-search-tool">Target et les femmes enceintes</a>)
+</section>
+
+<section>
+<h3>Exemple d'applications (2)</h3>
+<p>Recherche d'objets similaires: Pinterest</p>
+<p><img height="450" src="images/pinterest-application.jpg"></p>
+</section>
+
+<section>
+<h3>Exemple d'applications (3)</h3>
+<p>Chatbots: TacoBot</p>
+<p><img src="images/tacobot_preview.gif"></p>
+</section>
+
+<section>
+<h3>Exemple d'applications (4)</h3>
+<p>Légende automatique d'images: NeuralTalk2</p>
+<p><img src="images/images_captionning.png"></p>
+<a href="http://cs.stanford.edu/people/karpathy/neuraltalk2/demo.html">(plus d'exemples)</a>
+</section>
+
+<section>
+<h3>Introduction</h3>
+<p>Rendre "intelligent" un ordinateur :<br>le domaine de l'<b>Intelligence Artificielle</b></p>
+<img src="images/algorithmes-ia.jpg">
+</section>
+
+<section>
+<h3>Apprentissage non-supervisé</h3>
+<ul>
+<li>Nouvelles informations inférées uniquement à partir des données disponibles/mesurables</li>
+<li>Par exemple le partitionement (clustering)</li>
+</ul>
+<p><img src="images/clustering.png"></p>
+</section>
+
+<section>
+<h3>Apprentissage supervisé</h3>
+<ul> 
+<li>Nouvelles informations inférées à partir des exemples étiquetés par des experts afin d'obtenir une prédiction/classification</li>
+<li>Estimation du prix d'un appartement</li>
+</ul>
+<p>
+<table class="reveal mathblock">
+    <tr><th>Surface</th><th>Terrain</th><th>Pièces</th><th>Baignoires</th><th>Prix</th></tr>
+    <tr><td>100</td><td>500</td><td>5</td><td>1</td><td>350000</td></tr>
+    <tr><td>180</td><td>1000</td><td>7</td><td>2</td><td>650000</td></tr>
+    <tr><td>50</td><td>0</td><td>3</td><td>1</td><td>220000</td></tr>
+    <tr><td>70</td><td>0</td><td>4</td><td>1</td><td><font color="red">?</font></td></tr>
+</table>
+</p>
+</section>
+
+<section>
+<h3>Machine learning</h3>
+<ul>
+<li>Utilisation d'algorithmes numériques pour apprendre à un ordinateur une tâche pour laquelle il n'a pas été explicitement programmé</li>
+<li>Apprentissage supervisé: l'apprentissage se fait à partir d'exemples fournis par des experts</li>
+</ul>
+</section>
+
+<section>
+<h3>Machine learning</h3>
+<p>Un modèle de calcul permet d'obtenir le résultat</p>
+<img src="images/algo1.png">
+</section>
+
+<section>
+<h3>Machine learning</h3>
+<p>Le modèle est fixe, les paramètres variables</p>
+<img src="images/algo2.png">
+</section>
+
+<section>
+<h3>Machine learning</h3>
+<p>Optimisation des paramètres grâce aux exemples</p>
+<img src="images/algo3.png">
+</section>
+
+<section>
+<h3>L'algorithme d'apprentissage</h3>
+<ul>
+<li>Évaluer un modèle de calcul</li>
+<li>Mesurer l'erreur de l'évaluation</li>
+<li>Optimiser les paramètres</li>
+</ul>
+</section>
+
+<section>
+<h3>Modèle de calcul: le produit scalaire</h3>
+<div class="mathblock">
+    \[\hat{y} = \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix} \cdot \begin{bmatrix}w_1\\w_2\\w_3\end{bmatrix} = x_1 w_1 + x_2 w_2 + x_3 w_3\]
+</div>
+<ul>
+<li>Permet un mélange pondéré des données en entrées</li>
+<li>La cuisine du mathématicien:</li>
+<ul>
+    <li>les données sont les ingrédients</li>
+    <li>les paramètres sont les quantités</li>
+</ul>
+<li>Simple, mais efficace!</li>
+</ul>
+</section>
+
+<section>
+<h3>Mesurer l'erreur: moindres carrée</h3>
+
+<div class="mathblock">
+  $$erreur = \sum_{i}(y_i - \hat{y_i})^2$$
+</div>
+<ul>
+<li>Inventé au 18ème siècle par Gauss, a fait ses preuves!</li>
+<li>Le but est de minimiser l'erreur sur l'ensemble des données</li>
+</ul>
+</section>
+
+<section>
+<h3>Optimiser les paramètres</h3>
+<ul>
+<li>Modèle de calcul : $\hat{y} = w_0x + w_1$</li>
+<li>$erreur_{i}(w_0, w_1) = (y_i - (w_0x_i + w_1))^2$</li>
+<li>Comment trouver les meilleurs paramètres $w_0$ et $w_1$ qui minimisent l'erreur sur nos données d'apprentissage ?</li>
+</ul>
+</section>
+
+<section>
+<h3>Optimiser les paramètre (2)</h3>
+<img height="450" src="images/landscape.jpeg">
+</section>
+
+<section>
+<h3>Optimiser les paramètre (2)</h3>
+<img height="450" src="images/landscape_valley.jpeg">
+</section>
+
+<section>
+<h3>Optimiser les paramètre (2)</h3>
+<img height="450" src="images/landscape_fog.jpeg">
+</section>
+
+<section>
+<h3>Optimiser les paramètre (2)</h3>
+<img height="450" src="images/landscape_grad1.jpeg">
+</section>
+
+<section>
+<h3>Optimiser les paramètre (2)</h3>
+<img height="450" src="images/landscape_grad2.jpeg">
+</section>
+
+<section>
+<h3>Optimiser les paramètres : Descente de gradients stochastique</h3>
+<div class="mathblock">
+    $$W_{t+1} = W_t - \lambda\nabla erreur$$
+</div>
+<ul>
+<li>Pour chaque donnée d'apprentissage:</li>
+<ul>
+<li>calcul du gradient (pente) de l'erreur</li>
+<li>modification des paramètres dans la direction du gradient</li>
+<li>$ \lambda $: taux d'apprentissage</li>
+</ul>
+<li>stochastique = pour chaque point aléatoirement plutôt que sur la moyenne du gradient</li>
+</ul>
+</section>
+
+<section>
+<h3>Le python-code</h3>
+<pre><code data-trim class="python" style="max-height: 500px">
+from random import random, shuffle
+data = [ (x/50.0, (2 * x/50.0 + random()))
+         for x in range(-50, 50) ]
+shuffle(data)
+learningRate = 0.01
+w0 = 0
+w1 = 0
+for epoch in range(5):
+  for (x, y) in data:
+    f = w0 * x + w1
+    # erreur = (f - y)^2
+    # (u^2)' = 2uu'
+    gw0 = 2 * (f - y) * x
+    gw1 = 2 * (f - y)
+    w0 -= learningRate * gw0
+    w1 -= learningRate * gw1
+print (w0, w1)
+</code></pre>
+</section>
+
+<section>
+<h3>Démo Time: régression linéaire!</h3>
+</section>
+
+<section>
+<h3>Généralisation pour n>=2</h3>
+<p>S'applique aussi aux images:<br>les pixels deviennent les données d'entrée</p>
+<img src="images/mesure_mignon.png"/>
+<p class="fragment">Naan, pas tout de suite!</p>
+</section>
+
+<section>
+<h3>Classification</h3>
+<ul>
+<li>Précédemment on prédit une valeur, maintenant on prédit une catégorie</li>
+<li>Le résultat est la probabilité d'avoir reconu un 1</li>
+<li>=> Régression logistique</li>
+</ul>
+<img src="images/classification.png"/>
+</section>
+
+<section>
+<h3>Sigmoide</h3>
+<div class="mathblock">
+    $$sigmoide(x) = \frac{1}{1 + e^{-x}}$$
+</div>
+<ul>
+<li>la valeur est transformée en probabilité (ie. $\in [0,1]$)</li>
+</ul>
+<img src="images/sigmoide.png">
+</section>
+
+<section>
+<h3>Mesure d'erreur de probabilité</h3>
+<div class="mathblock">
+    $$erreur(p, q) = -p \log(q)$$
+</div>
+<ul>
+<li>Erreur mesurée par entropie croisée</li>
+<li>p: la "vrai" probabilité de l'expert</li>
+<li>q: la probabilité estimée</li>
+</ul>
+</section>
+
+<section>
+<h3>Régression logistique N>2 catégories</h3>
+<ul>
+<li>La fonction Softmax remplace la sigmoïde</li>
+</ul>
+<img src="images/softmax.png">
+<div class="mathblock">
+    $$softmax_i(x) = \frac{e^{x_i}}{\sum_k e^{x_k}}$$
+</div>
+</section>
+
+<section>
+<h3>Démo Time: classification des chiffres!</h3>
+</section>
+
+<section>
+<h3>Mesure de la performance</h3>
+<ul>
+<li>Les données étiquetées sont divisées en deux parties:
+<ul>
+<li>Les données d'apprentissage</li>
+<li>Les données de test pour mesurer la performance</li>
+</ul>
+</li>
+<li>Les résultats corrects de classification sont comptabilisés</li>
+<li>Dans notre cas au mieux 87%</li>
+</ul>
+</section>
+
+<section>
+<h3>Réseau de neurones classique</h3>
+<img height="300px" src="images/old_net.jpeg">
+<ul>
+<li>Imitation du fonctionnement du cerveau</li>
+<li>Les neurones sont interconnectés et forment des couches</li>
+<li>La sortie d'un neurone est non-linéaire</li>
+</ul>
+</section>
+
+<section>
+<h3>Fonctions non-linéaires</h3>
+<ul>
+<li>Pourquoi: la composition de fonctions linéaires reste linéaire</li>
+<li>La non-linéarité est indispensable pour modéliser des fonctions complexes</li>
+<li>Plein de sortes: Tanh, Sigmoïde, ReLU</li>
+</ul>
+</section>
+
+<section>
+<h3>Classification de chiffres</h3>
+<ul>
+<li>784 neurones d'entrée (28x28)</li>
+<li>625 neurones intermédiaires</li>
+<li>10 neurones de sortie</li>
+<li>fonction non linéaire: sigmoïde</li>
+<li>performance: 89%</li>
+</ul>
+</section>
+
+<section>
+<h3>Classification moderne de chiffres</h3>
+<ul>
+<li>784 neurones d'entrée (28x28)</li>
+<li>2 couches de 625 neurones intermédiaires</li>
+<li>10 neurones de sortie</li>
+<li>fonction non linéaire: ReLU</li>
+<li>injection de bruit pendant l'apprentissage</li>
+<li>performance: 97%</li>
+</ul>
+</section>
+
+<section>
+<h3>Méthode traditionnelle de traitement d'images</h3>
+<ul>
+<li>Extraction fixe de caractéristiques établie par un expert</li>
+<li>Classifieur avec apprentissage</li>
+</ul>
+<img src="images/features.png">
+</section>
+
+<section>
+<h3>Produit de convolution</h3>
+<ul>
+<li>Permet d'extraire des caractéristiques des images</li>
+<li>Très générique: entièrement défini par son noyau (kernel)</li>
+</ul>
+<img src="images/convolution.gif">
+</section>
+
+<section>
+<h3>Exemples de produits de convolution</h3>
+<img src="images/convolution.png">
+</section>
+
+<section>
+<h3>Réseau de neurones convolutionnel</h3>
+<img src="images/deep_network.png">
+<ul style="font-size: 0.8em !important;">
+<li>Les paramètres des convolutions font parties de l'apprentissage</li>
+<li>Pooling: réduction de la taille de l'image (souvent fonction max)</li>
+<li>Indépendant de la localité</li>
+<li>A chaque couche, les données deviennent de plus en plus conceptuelles</li>
+</ul>
+</section>
+
+<section>
+<h3>Classification de chiffres</h3>
+<ul>
+<li>entrée: image 28x28</li>
+<li>convolutions 3x3x1  + pooling => 32  images 14x14</li>
+<li>convolutions 3x3x32 + pooling => 64  images 7x7</li>
+<li>convolutions 3x3x64 + pooling => 128 images 3x3</li>
+<li>1152(128x3x3) valeurs => 625 valeurs</li>
+<li>625 valeurs => 10 catégories</li>
+<li>Performance: 99.9%</li>
+</ul>
+</section>
+
+<section>
+<h3>Évolution des réseaux</h3>
+<p>Toujours plus profond: DeepLearning!</p>
+<img src="images/googlenet.png">
+</section>
+
+<section>
+<h3>DeepLearning</h3>
+<ul>
+<li>Le coût d'apprentissage devient prohibitif:
+    <ul>
+    <li>en CPU (GoogLeNet: 1.5Gops => 500ms @3GHz)</li>
+    <li>en données (1M images => 5j)</li>
+    </ul>
+</li>
+<li>Solution: entrainement spécifique des dernières couches sur un réseau pré-entrainé</li>
+</ul>
+</section>
+
+<section>
+<h3>DeepDream</h3>
+<p>L'étude du cerveau numérique devient de l'art!</p>
+<img width="450" src="images/deepdream1.jpg"><img width="450" src="images/deepdream2.jpg">
+</section>
+
+<section>
+<h3>Traitement des langues naturelles</h3>
+<ul>
+<li>Besoin de séquences temporelles: Réseau de neurones récurrent (RNN)</li>
+<li>Algorithme: LSTM</li>
+<li>Prétraitement: Word2Vec (mot $\to$ vecteur)</li>
+</ul>
+<img src="images/lstm.jpeg">
+</section>
+
+<section>
+<h3>Le Datascientist</h3>
+<ul>
+<li>Nombreux paramètres à définir</li>
+<li>Choix de l'algorithme</li>
+<li>Choix des paramètres</li>
+<li>Normalisation des paramètres</li>
+</ul>
+<img height="300" src="images/scientist-lab.jpg">
+</section>
+
+<section>
+<h3>Les outils</h3>
+<ul>
+<li>Services clouds : Google vision, Amazon, etc.</li>
+<li>Il faut être de la maison serpentard!</li>
+<li>TensorFlow, Caffe, Torch7</li>
+</ul>
+<img height="300" src="images/serpentard.jpg">
+<img height="300" src="images/outils.png">
+</section>
+
+<section>
+<h3>Les données</h3>
+<ul style="font-size: 0.8em !important;">
+<li>Plus il y a de paramètres, plus il faut de données pour apprendre</li>
+<li>Il faut donc disposer de beacoup de données étiquetées</li>
+<li>Internet est un bon outils pour collecter beaucoup de données</li>
+<li>Les grosses entreprises sont très astucieuses pour obtenir des données étiquetées</li>
+<li>https://www.kaggle.com</li>
+</ul>
+</section>
+
+<section>
+<h3>Conclusion</h3>
+<ul>
+<li>Algorithmes relativement anciens et pas si compliqués</li>
+<li>Disponibilité d'énormes volumes de données et de CPU => Essor du DeepLearning</li>
+<li>Qualité et quantité des données importantes pour obtenir de bons résultats</li>
+<li> => utilisation du crowd sourcing</li>
+</ul>
+</section>
+
+<section>
+<h2>Question Time?</h2>
+<p>https://madbrain.github.com/pres-deeplearning/</p>
+</section>
+
+            </div>
+        </div>
+		<!-- build:js lib/vendor.js -->
+        <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
+        <script src="node_modules/reveal.js/js/reveal.js"></script>
+        <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+		<!-- endbuild -->
+        <script>
+            Reveal.initialize({
+				transition: 'none',
+				dependencies: [
+{ src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
+	hljs.initHighlightingOnLoad();
+} },
+{ src: 'node_modules/reveal.js/plugin/math/math.js'}
+				]
+			});
+        </script>
+    </body>
+</html>
