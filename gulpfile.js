@@ -28,6 +28,20 @@ gulp.task('deploy', [ 'build' ], function() {
     .pipe(ghPages());
 });
 
+gulp.task('serve-dist', function() {
+  startBrowsersync({
+    port: 3000,
+    open: false,
+    injectChanges: false,
+    server: {
+        baseDir: './dist',
+        files: [
+            'index.html'
+        ]
+    }
+  });
+});
+
 gulp.task('serve', function() {
   startBrowsersync({
     port: 3000,
