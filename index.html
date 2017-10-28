@@ -466,14 +466,9 @@ print (w0, w1)
 		<script src="lib/vendor.js"></script>
         <script>
             Reveal.initialize({
-				transition: 'none',
-				dependencies: [
-{ src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
-	hljs.initHighlightingOnLoad();
-} },
-{ src: 'node_modules/reveal.js/plugin/math/math.js'}
-				]
+				transition: 'none'
 			});
+            hljs.initHighlightingOnLoad();
         </script>
     </body>
 </html>
